@@ -37,6 +37,7 @@ CAPTION_IG = """We handle your entire content production and product marketing �
 
 If you're interested in how to create similar videos, comment "AI" and I'll send you a step-by-step PDF showing how you can create similar videos yourself.
 
+📍 Freiburg im Breisgau
 🌐 assistifyai-official.netlify.app
 📩 Waitlist: assistifyai-official.netlify.app/#waitlist
 
@@ -89,7 +90,6 @@ def post_instagram(video_url: str) -> bool:
         "video_url":     video_url,
         "media_type":    "REELS",
         "caption":       CAPTION_IG,
-        "location_id":   LOCATION_ID,
         "share_to_feed": "true",
         "access_token":  IG_TOKEN,
     })
