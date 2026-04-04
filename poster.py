@@ -27,7 +27,7 @@ IG_USER_ID        = os.environ.get("INSTAGRAM_USER_ID", "26327994056810336")
 FB_PAGE_TOKEN     = os.environ.get("FB_PAGE_ACCESS_TOKEN", "")   # Facebook Page Token
 FB_PAGE_ID        = os.environ.get("FB_PAGE_ID", "61579625669890")
 TIKTOK_TOKEN      = os.environ.get("TIKTOK_ACCESS_TOKEN", "")    # TikTok Token
-LOCATION_ID       = "483128521725358"   # Freiburg im Breisgau
+LOCATION_ID       = "107681779263786"   # Freiburg im Breisgau
 
 CLOUDINARY_CLOUD  = os.environ.get("CLOUDINARY_CLOUD_NAME", "dlv8ebddq")
 CLOUDINARY_KEY    = os.environ.get("CLOUDINARY_API_KEY", "837591974475139")
