@@ -221,6 +221,15 @@ def post_now():
     threading.Thread(target=daily_post, daemon=True).start()
     return jsonify({"status": "started — check logs"})
 
+@app.route("/find_location")
+def find_location():
+    q = "Freiburg im Breisgau"
+    r = requests.get(
+        "https://graph.facebook.com/v21.0/search",
+        params={"type": "place", "q": q, "fields": "id,name,location", "access_token": IG_TOKEN}
+    )
+    return jsonify(r.json())
+
 @app.route("/queue")
 def queue_status():
     try:
