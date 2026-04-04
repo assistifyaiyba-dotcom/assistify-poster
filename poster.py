@@ -27,7 +27,7 @@ IG_USER_ID        = os.environ.get("INSTAGRAM_USER_ID", "26327994056810336")
 FB_PAGE_TOKEN     = os.environ.get("FB_PAGE_ACCESS_TOKEN", "")   # Facebook Page Token
 FB_PAGE_ID        = os.environ.get("FB_PAGE_ID", "61579625669890")
 TIKTOK_TOKEN      = os.environ.get("TIKTOK_ACCESS_TOKEN", "")    # TikTok Token
-LOCATION_ID       = "107681779263786"  # Freiburg im Breisgau
+LOCATION_ID       = "483128521725358"   # Freiburg im Breisgau
 
 CLOUDINARY_CLOUD  = os.environ.get("CLOUDINARY_CLOUD_NAME", "dlv8ebddq")
 CLOUDINARY_KEY    = os.environ.get("CLOUDINARY_API_KEY", "837591974475139")
@@ -89,6 +89,7 @@ def post_instagram(video_url: str) -> bool:
         "video_url":     video_url,
         "media_type":    "REELS",
         "caption":       CAPTION_IG,
+        "location_id":   LOCATION_ID,
         "share_to_feed": "true",
         "access_token":  IG_TOKEN,
     })
@@ -223,10 +224,13 @@ def post_now():
 
 @app.route("/find_location")
 def find_location():
+    token = FB_PAGE_TOKEN or IG_TOKEN
+    if not token:
+        return jsonify({"error": "Kein Token verfügbar"})
     q = "Freiburg im Breisgau"
     r = requests.get(
         "https://graph.facebook.com/v21.0/search",
-        params={"type": "place", "q": q, "fields": "id,name,location", "access_token": IG_TOKEN}
+        params={"type": "place", "q": q, "fields": "id,name,location", "access_token": token}
     )
     return jsonify(r.json())
 
