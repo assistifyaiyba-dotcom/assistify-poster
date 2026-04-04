@@ -7,6 +7,7 @@ Railway hosted, Cloudinary queue
 import os
 import time
 import json
+import threading
 import requests
 from datetime import datetime
 from flask import Flask, jsonify
@@ -217,8 +218,8 @@ def home():
 
 @app.route("/post_now")
 def post_now():
-    daily_post()
-    return jsonify({"status": "done"})
+    threading.Thread(target=daily_post, daemon=True).start()
+    return jsonify({"status": "started — check logs"})
 
 @app.route("/queue")
 def queue_status():
