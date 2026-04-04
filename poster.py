@@ -222,6 +222,19 @@ def post_now():
     threading.Thread(target=daily_post, daemon=True).start()
     return jsonify({"status": "started — check logs"})
 
+@app.route("/test_facebook")
+def test_facebook():
+    def run():
+        video = get_next_video()
+        if not video:
+            print("Queue leer")
+            return
+        video_url = video.get("secure_url")
+        print(f"Facebook Test mit: {video_url}")
+        post_facebook(video_url)
+    threading.Thread(target=run, daemon=True).start()
+    return jsonify({"status": "Facebook Test gestartet — check logs"})
+
 @app.route("/find_location")
 def find_location():
     token = FB_PAGE_TOKEN or IG_TOKEN
