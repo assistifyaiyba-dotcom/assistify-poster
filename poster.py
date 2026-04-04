@@ -130,7 +130,7 @@ def post_facebook(video_url: str) -> bool:
 
     print("Facebook: Poste Reel...")
     r = requests.post(
-        "https://graph-video.facebook.com/v21.0/me/videos",
+        f"https://graph-video.facebook.com/v21.0/{FB_PAGE_ID}/videos",
         data={
             "file_url":    video_url,
             "description": CAPTION_FB,
