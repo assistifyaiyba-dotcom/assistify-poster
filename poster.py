@@ -123,17 +123,18 @@ def post_instagram(video_url: str) -> bool:
     print(f"Instagram Publish-Fehler: {pub.text}")
     return False
 
-def post_facebook(video_url: str) -> bool:
+def post_facebook(video_url: str, published: bool = True) -> bool:
     if not FB_PAGE_TOKEN:
         print("Facebook: kein Page Token — übersprungen")
         return False
 
-    print("Facebook: Poste Reel...")
+    print(f"Facebook: Poste Video (published={published})...")
     r = requests.post(
         f"https://graph-video.facebook.com/v21.0/{FB_PAGE_ID}/videos",
         data={
             "file_url":    video_url,
             "description": CAPTION_FB,
+            "published":   "true" if published else "false",
             "access_token": FB_PAGE_TOKEN,
         }
     )
@@ -231,7 +232,7 @@ def test_facebook():
             return
         video_url = video.get("secure_url")
         print(f"Facebook Test mit: {video_url}")
-        post_facebook(video_url)
+        post_facebook(video_url, published=False)  # Privat / unpublished für Test
     threading.Thread(target=run, daemon=True).start()
     return jsonify({"status": "Facebook Test gestartet — check logs"})
 
