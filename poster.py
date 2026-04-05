@@ -277,7 +277,7 @@ def test_tiktok():
 
 @app.route("/tiktokoxDjnNm6ADOs6kJuaXIXlProCPwZX61Q.txt")
 def tiktok_verify():
-    return "tiktokoxDjnNm6ADOs6kJuaXIXlProCPwZX61Q", 200, {"Content-Type": "text/plain"}
+    return "tiktok-developers-site-verification=oxDjnNm6ADOs6kJuaXIXIProCPwZX61Q", 200, {"Content-Type": "text/plain"}
 
 @app.route("/terms")
 def terms():
