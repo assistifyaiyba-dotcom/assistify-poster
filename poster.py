@@ -275,6 +275,22 @@ def test_tiktok():
     threading.Thread(target=run, daemon=True).start()
     return jsonify({"status": "TikTok Test gestartet — check logs"})
 
+@app.route("/terms")
+def terms():
+    return """<html><body><h1>Terms of Service</h1>
+    <p>Assistify Poster is an automated content publishing tool for social media platforms.
+    By using this service, you agree to comply with all applicable platform terms of service.
+    This tool is for authorized account owners only.</p>
+    <p>Contact: assistifyai-official.netlify.app</p></body></html>"""
+
+@app.route("/privacy")
+def privacy():
+    return """<html><body><h1>Privacy Policy</h1>
+    <p>Assistify Poster does not collect or store personal user data beyond what is necessary
+    for authentication and content posting. Access tokens are stored securely as environment
+    variables and are never shared with third parties.</p>
+    <p>Contact: assistifyai-official.netlify.app</p></body></html>"""
+
 @app.route("/debug_tiktok")
 def debug_tiktok():
     if not TIKTOK_TOKEN:
