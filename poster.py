@@ -151,6 +151,7 @@ def post_tiktok(video_url: str) -> bool:
         print("TikTok: kein Token — übersprungen")
         return False
 
+    print(f"TikTok: Token Länge: {len(TIKTOK_TOKEN)} | Anfang: {TIKTOK_TOKEN[:20]}")
     print("TikTok: Poste Video...")
     # TikTok Content Posting API v2
     r = requests.post(
