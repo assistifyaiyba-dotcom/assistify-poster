@@ -27,6 +27,8 @@ IG_USER_ID        = os.environ.get("INSTAGRAM_USER_ID", "26327994056810336")
 FB_PAGE_TOKEN     = os.environ.get("FB_PAGE_ACCESS_TOKEN", "")   # Facebook Page Token
 FB_PAGE_ID        = os.environ.get("FB_PAGE_ID", "61579625669890")
 TIKTOK_TOKEN      = os.environ.get("TIKTOK_ACCESS_TOKEN", "")    # TikTok Token
+TIKTOK_CLIENT_KEY = os.environ.get("TIKTOK_CLIENT_KEY", "")
+TIKTOK_CLIENT_SECRET = os.environ.get("TIKTOK_CLIENT_SECRET", "")
 LOCATION_ID       = "107681779263786"   # Freiburg im Breisgau
 
 CLOUDINARY_CLOUD  = os.environ.get("CLOUDINARY_CLOUD_NAME", "dlv8ebddq")
@@ -258,6 +260,37 @@ def queue_status():
         return jsonify({"total": len(assets), "noch_ausstehend": len(unposted), "gepostet": len(posted)})
     except Exception as e:
         return jsonify({"error": str(e)})
+
+@app.route("/tiktok/auth")
+def tiktok_auth():
+    import urllib.parse
+    params = {
+        "client_key": TIKTOK_CLIENT_KEY,
+        "scope": "user.info.basic,video.publish,video.upload",
+        "response_type": "code",
+        "redirect_uri": "https://web-production-c56a1.up.railway.app/tiktok/callback",
+        "state": "assistify123",
+    }
+    url = "https://www.tiktok.com/v2/auth/authorize/?" + urllib.parse.urlencode(params)
+    return f'<a href="{url}">Login mit TikTok</a>'
+
+@app.route("/tiktok/callback")
+def tiktok_callback():
+    from flask import request as freq
+    code = freq.args.get("code")
+    if not code:
+        return jsonify({"error": "Kein Code erhalten", "params": dict(freq.args)})
+    r = requests.post("https://open.tiktokapis.com/v2/oauth/token/", data={
+        "client_key": TIKTOK_CLIENT_KEY,
+        "client_secret": TIKTOK_CLIENT_SECRET,
+        "code": code,
+        "grant_type": "authorization_code",
+        "redirect_uri": "https://web-production-c56a1.up.railway.app/tiktok/callback",
+    })
+    data = r.json()
+    token = data.get("access_token", "")
+    print(f"TikTok Access Token: {token}")
+    return jsonify({"access_token": token, "full_response": data})
 
 # ─── Scheduler ────────────────────────────────────────────────────────────────
 scheduler = BackgroundScheduler(timezone=BERLIN)
