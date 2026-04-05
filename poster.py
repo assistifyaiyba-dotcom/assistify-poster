@@ -275,6 +275,17 @@ def test_tiktok():
     threading.Thread(target=run, daemon=True).start()
     return jsonify({"status": "TikTok Test gestartet — check logs"})
 
+@app.route("/debug_tiktok")
+def debug_tiktok():
+    if not TIKTOK_TOKEN:
+        return jsonify({"error": "Kein Token"})
+    r = requests.get(
+        "https://open.tiktokapis.com/v2/user/info/",
+        headers={"Authorization": f"Bearer {TIKTOK_TOKEN}"},
+        params={"fields": "open_id,display_name,avatar_url"}
+    )
+    return jsonify({"status": r.status_code, "response": r.json()})
+
 @app.route("/tiktok/auth")
 def tiktok_auth():
     import urllib.parse
