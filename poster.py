@@ -275,6 +275,10 @@ def test_tiktok():
     threading.Thread(target=run, daemon=True).start()
     return jsonify({"status": "TikTok Test gestartet — check logs"})
 
+@app.route("/tiktokoxDjnNm6ADOs6kJuaXIXlProCPwZX61Q.txt")
+def tiktok_verify():
+    return "tiktokoxDjnNm6ADOs6kJuaXIXlProCPwZX61Q", 200, {"Content-Type": "text/plain"}
+
 @app.route("/terms")
 def terms():
     return """<html><body><h1>Terms of Service</h1>
