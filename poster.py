@@ -279,6 +279,10 @@ def test_tiktok():
 def tiktok_verify():
     return "tiktok-developers-site-verification=oxDjnNm6ADOs6kJuaXIXIProCPwZX61Q", 200, {"Content-Type": "text/plain"}
 
+@app.route("/tiktokoxDjnNm6ADOs6kJuaXIXIProCPwZX61Q.txt")
+def tiktok_verify2():
+    return "tiktok-developers-site-verification=oxDjnNm6ADOs6kJuaXIXIProCPwZX61Q", 200, {"Content-Type": "text/plain"}
+
 @app.route("/terms")
 def terms():
     return """<html><body><h1>Terms of Service</h1>
