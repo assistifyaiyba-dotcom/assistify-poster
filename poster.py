@@ -30,6 +30,7 @@ TIKTOK_TOKEN      = os.environ.get("TIKTOK_ACCESS_TOKEN", "")    # TikTok Token
 TIKTOK_CLIENT_KEY = os.environ.get("TIKTOK_CLIENT_KEY", "")
 TIKTOK_CLIENT_SECRET = os.environ.get("TIKTOK_CLIENT_SECRET", "")
 LOCATION_ID       = "107681779263786"   # Freiburg im Breisgau
+LOCATION_ID_2     = os.environ.get("LOCATION_ID_ABU_DHABI", "")  # Abu Dhabi — via /find_location_abudhabi
 
 CLOUDINARY_CLOUD  = os.environ.get("CLOUDINARY_CLOUD_NAME", "dlv8ebddq")
 CLOUDINARY_KEY    = os.environ.get("CLOUDINARY_API_KEY", "837591974475139")
@@ -47,6 +48,18 @@ If you're interested in how to create similar videos, comment "AI" and I'll send
 
 CAPTION_FB = CAPTION_IG  # Same caption for Facebook
 
+CAPTION_IG_2 = """We handle your entire content production and product marketing – from idea to high-performing videos 🎬
+
+If you're interested in how to create similar videos, comment "AI" and I'll send you a step-by-step PDF showing how you can create similar videos yourself.
+
+📍 Abu Dhabi
+🌐 assistifyai-official.netlify.app
+📩 Waitlist: assistifyai-official.netlify.app/#waitlist
+
+#aivideo #marketingestrategico #contentcreators #ugc #brandingtips"""
+
+CAPTION_FB_2 = CAPTION_IG_2
+
 CAPTION_TT = """We handle your entire content production and product marketing 🎬
 
 Comment "AI" for a free step-by-step PDF on how to create similar videos!
@@ -62,10 +75,10 @@ cloudinary.config(
     api_secret=CLOUDINARY_SECRET,
 )
 
-def get_next_video():
+def get_next_video(tag="ig_queue"):
     try:
         result = cloudinary.api.resources_by_tag(
-            "ig_queue", resource_type="video", context=True, max_results=100
+            tag, resource_type="video", context=True, max_results=100
         )
         assets = result.get("resources", [])
         unposted = [
@@ -123,6 +136,76 @@ def post_instagram(video_url: str) -> bool:
         print(f"Instagram: Gepostet! ID: {pub.json().get('id')}")
         return True
     print(f"Instagram Publish-Fehler: {pub.text}")
+    return False
+
+def post_instagram_2(video_url: str) -> bool:
+    if not IG_TOKEN:
+        print("Instagram: kein Token")
+        return False
+
+    base = f"https://graph.instagram.com/v21.0/{IG_USER_ID}"
+    print("Instagram (Queue 2): Erstelle Container...")
+
+    data = {
+        "video_url":     video_url,
+        "media_type":    "REELS",
+        "caption":       CAPTION_IG_2,
+        "share_to_feed": "true",
+        "access_token":  IG_TOKEN,
+    }
+    if LOCATION_ID_2:
+        data["location_id"] = LOCATION_ID_2
+
+    r = requests.post(f"{base}/media", data=data)
+    if r.status_code != 200:
+        print(f"Instagram Container-Fehler: {r.text}")
+        return False
+
+    container_id = r.json().get("id")
+    print(f"Instagram Container: {container_id} — warte auf Verarbeitung...")
+
+    for attempt in range(20):
+        time.sleep(15)
+        s = requests.get(
+            f"https://graph.instagram.com/v21.0/{container_id}",
+            params={"fields": "status_code", "access_token": IG_TOKEN}
+        ).json().get("status_code", "")
+        print(f"  Status: {s} ({attempt+1}/20)")
+        if s == "FINISHED":
+            break
+        if s == "ERROR":
+            print("Instagram: Verarbeitung fehlgeschlagen")
+            return False
+
+    pub = requests.post(f"{base}/media_publish", data={
+        "creation_id": container_id,
+        "access_token": IG_TOKEN,
+    })
+    if pub.status_code == 200:
+        print(f"Instagram (Queue 2): Gepostet! ID: {pub.json().get('id')}")
+        return True
+    print(f"Instagram Publish-Fehler: {pub.text}")
+    return False
+
+def post_facebook_2(video_url: str) -> bool:
+    if not FB_PAGE_TOKEN:
+        print("Facebook: kein Page Token — übersprungen")
+        return False
+
+    print("Facebook (Queue 2): Poste Video...")
+    r = requests.post(
+        f"https://graph-video.facebook.com/v21.0/{FB_PAGE_ID}/videos",
+        data={
+            "file_url":    video_url,
+            "description": CAPTION_FB_2,
+            "published":   "true",
+            "access_token": FB_PAGE_TOKEN,
+        }
+    )
+    if r.status_code == 200:
+        print(f"Facebook (Queue 2): Gepostet! ID: {r.json().get('id')}")
+        return True
+    print(f"Facebook Fehler: {r.text}")
     return False
 
 def post_facebook(video_url: str, published: bool = True) -> bool:
@@ -192,10 +275,10 @@ def mark_as_posted(public_id: str):
 def daily_post():
     now = datetime.now(BERLIN)
     print(f"\n{'='*50}")
-    print(f"Daily Post: {now.strftime('%d.%m.%Y %H:%M')} Berlin")
+    print(f"Daily Post 19:00 (Freiburg): {now.strftime('%d.%m.%Y %H:%M')} Berlin")
     print(f"{'='*50}")
 
-    video = get_next_video()
+    video = get_next_video("ig_queue")
     if not video:
         print("Queue leer — keine Videos mehr!")
         return
@@ -216,6 +299,32 @@ def daily_post():
     if ig_ok or fb_ok or tt_ok:
         mark_as_posted(public_id)
 
+def daily_post_noon():
+    now = datetime.now(BERLIN)
+    print(f"\n{'='*50}")
+    print(f"Daily Post 12:00 (Abu Dhabi): {now.strftime('%d.%m.%Y %H:%M')} Berlin")
+    print(f"{'='*50}")
+
+    video = get_next_video("ig_queue_2")
+    if not video:
+        print("Queue 2 leer — keine Videos mehr!")
+        return
+
+    video_url = video.get("secure_url")
+    public_id = video.get("public_id")
+    order = video.get("context", {}).get("custom", {}).get("post_order", "?")
+    print(f"Video #{order}: {public_id}\n")
+
+    # Post Instagram with Abu Dhabi location
+    ig_ok = post_instagram_2(video_url)
+    time.sleep(5)
+    fb_ok = post_facebook_2(video_url)
+
+    print(f"\nErgebnis: Instagram={'✓' if ig_ok else '✗'} | Facebook={'✓' if fb_ok else '✗'}")
+
+    if ig_ok or fb_ok:
+        mark_as_posted(public_id)
+
 # ─── Routes ───────────────────────────────────────────────────────────────────
 @app.route("/")
 def home():
@@ -225,6 +334,34 @@ def home():
 def post_now():
     threading.Thread(target=daily_post, daemon=True).start()
     return jsonify({"status": "started — check logs"})
+
+@app.route("/post_now_noon")
+def post_now_noon():
+    threading.Thread(target=daily_post_noon, daemon=True).start()
+    return jsonify({"status": "Queue 2 gestartet — check logs"})
+
+@app.route("/queue2")
+def queue2_status():
+    try:
+        result = cloudinary.api.resources_by_tag("ig_queue_2", resource_type="video", context=True, max_results=100)
+        assets = result.get("resources", [])
+        unposted = [a for a in assets if a.get("context", {}).get("custom", {}).get("ig_posted") == "false"]
+        posted = [a for a in assets if a.get("context", {}).get("custom", {}).get("ig_posted") == "true"]
+        return jsonify({"total": len(assets), "noch_ausstehend": len(unposted), "gepostet": len(posted)})
+    except Exception as e:
+        return jsonify({"error": str(e)})
+
+@app.route("/find_location_abudhabi")
+def find_location_abudhabi():
+    token = FB_PAGE_TOKEN or IG_TOKEN
+    if not token:
+        return jsonify({"error": "Kein Token verfügbar"})
+    q = "Abu Dhabi"
+    r = requests.get(
+        "https://graph.facebook.com/v21.0/search",
+        params={"type": "place", "q": q, "fields": "id,name,location", "access_token": token}
+    )
+    return jsonify(r.json())
 
 @app.route("/test_facebook")
 def test_facebook():
@@ -343,7 +480,8 @@ def tiktok_callback():
 
 # ─── Scheduler ────────────────────────────────────────────────────────────────
 scheduler = BackgroundScheduler(timezone=BERLIN)
-scheduler.add_job(daily_post, CronTrigger(hour=19, minute=0, timezone=BERLIN))
+scheduler.add_job(daily_post, CronTrigger(hour=19, minute=0, timezone=BERLIN))       # Queue 1 — 19:00 Freiburg
+scheduler.add_job(daily_post_noon, CronTrigger(hour=12, minute=0, timezone=BERLIN))  # Queue 2 — 12:00 Abu Dhabi
 scheduler.start()
 
 if __name__ == "__main__":
