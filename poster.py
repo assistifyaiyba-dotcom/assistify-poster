@@ -36,37 +36,54 @@ CLOUDINARY_CLOUD  = os.environ.get("CLOUDINARY_CLOUD_NAME", "dlv8ebddq")
 CLOUDINARY_KEY    = os.environ.get("CLOUDINARY_API_KEY", "837591974475139")
 CLOUDINARY_SECRET = os.environ.get("CLOUDINARY_API_SECRET", "1wHQz08D45SYbFg7vuecfVMaOac")
 
-CAPTION_IG = """We handle your entire content production and product marketing – from idea to high-performing videos 🎬
+CAPTION_IG = """Deine Konkurrenz nutzt bereits KI für ihre Marketing-Videos. 👀
 
-If you're interested in how to create similar videos, comment "AI" and I'll send you a step-by-step PDF showing how you can create similar videos yourself.
+——
 
-📍 Freiburg im Breisgau
-🌐 assistifyai-official.netlify.app
-📩 Waitlist: assistifyai-official.netlify.app/#waitlist
+🏢 Du willst auch bessere, spezialisierte Videos für dein Business?
+→ Schreib uns eine DM oder trag dich in die Warteliste ein:
+assistifyai-official.netlify.app/#waitlist
 
-#aivideo #marketingestrategico #contentcreators #ugc #brandingtips"""
+🎬 Du willst ähnliche Videos selbst erstellen?
+→ Kommentiere "KI" für eine kostenlose Schritt-für-Schritt-Anleitung
 
-CAPTION_FB = CAPTION_IG  # Same caption for Facebook
+——
 
-CAPTION_IG_2 = """We handle your entire content production and product marketing – from idea to high-performing videos 🎬
+#kimarketing #kivideo #ugcvideo #contentcreator #digitalmarketing
+#videomarketing #contentmarketing #brandvideo #ugccreator #kitools
+#videowerbung #socialmediamarketing #marketingagentur #contentcreation #reels
+#kicontent #videoproduktion #marketingtipps #unternehmenswachstum #startupmarketing"""
 
-If you're interested in how to create similar videos, comment "AI" and I'll send you a step-by-step PDF showing how you can create similar videos yourself.
+CAPTION_FB = CAPTION_IG
 
-📍 Abu Dhabi
-🌐 assistifyai-official.netlify.app
-📩 Waitlist: assistifyai-official.netlify.app/#waitlist
+CAPTION_IG_2 = """Your competitors are already using AI for their marketing videos. 👀
 
-#aivideo #marketingestrategico #contentcreators #ugc #brandingtips"""
+——
+
+🏢 Want better, specialized videos for your business?
+→ DM us or join the waitlist:
+assistifyai-official.netlify.app/#waitlist
+
+🎬 Want to create similar videos yourself?
+→ Comment "AI" for a free step-by-step guide
+
+——
+
+#aimarketing #aivideo #ugcvideo #contentcreator #digitalmarketing
+#videomarketing #contentmarketing #brandvideo #ugccreator #aitools
+#videoads #socialmediamarketing #marketingagency #contentcreation #reels
+#aicontentcreation #videoproduction #marketingtips #businessgrowth #startupmarketing"""
 
 CAPTION_FB_2 = CAPTION_IG_2
 
-CAPTION_TT = """We handle your entire content production and product marketing 🎬
+CAPTION_TT = """Your competitors are already using AI for their marketing videos. 👀
 
-Comment "AI" for a free step-by-step PDF on how to create similar videos!
+🏢 Want videos for your business? DM us or join the waitlist → link in bio
+🎬 Want to make these yourself? Comment "AI" for a free guide
 
-🌐 assistifyai-official.netlify.app
-
-#aivideo #contentcreators #ugc #brandingtips #marketingdigital"""
+#aimarketing #aivideo #ugcvideo #contentcreator #digitalmarketing
+#videomarketing #contentmarketing #brandvideo #ugccreator #aitools
+#videoads #socialmediamarketing #marketingagency #contentcreation #reels"""
 # ──────────────────────────────────────────────────────────────────────────────
 
 cloudinary.config(
