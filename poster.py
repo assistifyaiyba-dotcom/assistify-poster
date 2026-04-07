@@ -153,8 +153,6 @@ def post_instagram_2(video_url: str) -> bool:
         "share_to_feed": "true",
         "access_token":  IG_TOKEN,
     }
-    if LOCATION_ID_2:
-        data["location_id"] = LOCATION_ID_2
 
     r = requests.post(f"{base}/media", data=data)
     if r.status_code != 200:
