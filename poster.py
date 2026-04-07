@@ -30,7 +30,7 @@ TIKTOK_TOKEN      = os.environ.get("TIKTOK_ACCESS_TOKEN", "")    # TikTok Token
 TIKTOK_CLIENT_KEY = os.environ.get("TIKTOK_CLIENT_KEY", "")
 TIKTOK_CLIENT_SECRET = os.environ.get("TIKTOK_CLIENT_SECRET", "")
 LOCATION_ID       = "107681779263786"   # Freiburg im Breisgau
-LOCATION_ID_2     = os.environ.get("LOCATION_ID_ABU_DHABI", "")  # Abu Dhabi — via /find_location_abudhabi
+LOCATION_ID_2     = "110953905611108"   # Abu Dhabi, UAE
 
 CLOUDINARY_CLOUD  = os.environ.get("CLOUDINARY_CLOUD_NAME", "dlv8ebddq")
 CLOUDINARY_KEY    = os.environ.get("CLOUDINARY_API_KEY", "837591974475139")
@@ -151,6 +151,7 @@ def post_instagram_2(video_url: str) -> bool:
         "media_type":    "REELS",
         "caption":       CAPTION_IG_2,
         "share_to_feed": "true",
+        "location_id":   LOCATION_ID_2,
         "access_token":  IG_TOKEN,
     }
 
