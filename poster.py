@@ -168,7 +168,6 @@ def post_instagram_2(video_url: str) -> bool:
         "media_type":    "REELS",
         "caption":       CAPTION_IG_2,
         "share_to_feed": "true",
-        "location_id":   LOCATION_ID_2,
         "access_token":  IG_TOKEN,
     }
 
