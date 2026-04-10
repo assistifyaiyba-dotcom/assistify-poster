@@ -84,6 +84,24 @@ CAPTION_TT = """Your competitors are already using AI for their marketing videos
 #aimarketing #aivideo #ugcvideo #contentcreator #digitalmarketing
 #videomarketing #contentmarketing #brandvideo #ugccreator #aitools
 #videoads #socialmediamarketing #marketingagency #contentcreation #reels"""
+
+CAPTION_IG_3 = """This video was made with AI. 🤖🎬
+
+——
+
+Every frame. Every scene. 100% AI-generated storytelling.
+This is what we build for brands at Assistify AI.
+
+💡 Want a free AI video for your business?
+→ Comment "AI" and we'll send you everything you need
+
+——
+
+#aivideo #aimarketing #aigeneratedvideo #storytellingmarketing #contentcreator
+#digitalmarketing #videomarketing #brandvideo #aitools #contentcreation
+#reels #socialmediamarketing #marketingagency #businessgrowth #aicontentcreation"""
+
+CAPTION_FB_3 = CAPTION_IG_3
 # ──────────────────────────────────────────────────────────────────────────────
 
 cloudinary.config(
@@ -340,6 +358,80 @@ def daily_post_noon():
     if ig_ok or fb_ok:
         mark_as_posted(public_id)
 
+def post_instagram_3(video_url: str) -> bool:
+    """Queue 3 — 20:00 Berlin, Storytelling EN"""
+    print("Instagram (Queue 3 Storytelling): Poste Video...")
+    r = requests.post(
+        f"https://graph.instagram.com/v21.0/{IG_USER_ID}/media",
+        data={
+            "media_type":  "REELS",
+            "video_url":   video_url,
+            "caption":     CAPTION_IG_3,
+            "share_to_feed": "true",
+            "access_token": IG_TOKEN,
+        }
+    )
+    if r.status_code != 200:
+        print(f"Container-Fehler: {r.text}")
+        return False
+    container_id = r.json().get("id")
+    time.sleep(30)
+    pub = requests.post(
+        f"https://graph.instagram.com/v21.0/{IG_USER_ID}/media_publish",
+        data={"creation_id": container_id, "access_token": IG_TOKEN}
+    )
+    if pub.status_code == 200:
+        print(f"Instagram (Queue 3): Gepostet! ID: {pub.json().get('id')}")
+        return True
+    print(f"Instagram Publish-Fehler: {pub.text}")
+    return False
+
+def post_facebook_3(video_url: str) -> bool:
+    """Queue 3 — 20:00 Berlin, Storytelling EN"""
+    if not FB_PAGE_TOKEN:
+        print("Facebook: kein Page Token — übersprungen")
+        return False
+    print("Facebook (Queue 3 Storytelling): Poste Video...")
+    r = requests.post(
+        f"https://graph-video.facebook.com/v21.0/{FB_PAGE_ID}/videos",
+        data={
+            "file_url":    video_url,
+            "description": CAPTION_FB_3,
+            "published":   "true",
+            "access_token": FB_PAGE_TOKEN,
+        }
+    )
+    if r.status_code == 200:
+        print(f"Facebook (Queue 3): Gepostet! ID: {r.json().get('id')}")
+        return True
+    print(f"Facebook Fehler: {r.text}")
+    return False
+
+def daily_post_evening():
+    now = datetime.now(BERLIN)
+    print(f"\n{'='*50}")
+    print(f"Daily Post 20:00 (Storytelling EN): {now.strftime('%d.%m.%Y %H:%M')} Berlin")
+    print(f"{'='*50}")
+
+    video = get_next_video("ig_queue_3")
+    if not video:
+        print("Queue 3 leer — keine Storytelling Videos mehr!")
+        return
+
+    video_url = video.get("secure_url")
+    public_id = video.get("public_id")
+    order = video.get("context", {}).get("custom", {}).get("post_order", "?")
+    print(f"Video #{order}: {public_id}\n")
+
+    ig_ok = post_instagram_3(video_url)
+    time.sleep(5)
+    fb_ok = post_facebook_3(video_url)
+
+    print(f"\nErgebnis: Instagram={'✓' if ig_ok else '✗'} | Facebook={'✓' if fb_ok else '✗'}")
+
+    if ig_ok or fb_ok:
+        mark_as_posted(public_id)
+
 # ─── Routes ───────────────────────────────────────────────────────────────────
 @app.route("/")
 def home():
@@ -354,6 +446,22 @@ def post_now():
 def post_now_noon():
     threading.Thread(target=daily_post_noon, daemon=True).start()
     return jsonify({"status": "Queue 2 gestartet — check logs"})
+
+@app.route("/post_now_evening")
+def post_now_evening():
+    threading.Thread(target=daily_post_evening, daemon=True).start()
+    return jsonify({"status": "Queue 3 (Storytelling) gestartet — check logs"})
+
+@app.route("/queue3")
+def queue3_status():
+    try:
+        result = cloudinary.api.resources_by_tag("ig_queue_3", resource_type="video", context=True, max_results=100)
+        assets = result.get("resources", [])
+        unposted = [a for a in assets if a.get("context", {}).get("custom", {}).get("ig_posted") == "false"]
+        posted = [a for a in assets if a.get("context", {}).get("custom", {}).get("ig_posted") == "true"]
+        return jsonify({"total": len(assets), "noch_ausstehend": len(unposted), "gepostet": len(posted)})
+    except Exception as e:
+        return jsonify({"error": str(e)})
 
 @app.route("/queue2")
 def queue2_status():
@@ -497,6 +605,7 @@ def tiktok_callback():
 scheduler = BackgroundScheduler(timezone=BERLIN)
 scheduler.add_job(daily_post, CronTrigger(hour=19, minute=0, timezone=BERLIN))       # Queue 1 — 19:00 Freiburg
 scheduler.add_job(daily_post_noon, CronTrigger(hour=12, minute=0, timezone=BERLIN))  # Queue 2 — 12:00 Abu Dhabi
+scheduler.add_job(daily_post_evening, CronTrigger(hour=20, minute=0, timezone=BERLIN))  # Queue 3 — 20:00 Storytelling
 scheduler.start()
 
 if __name__ == "__main__":
