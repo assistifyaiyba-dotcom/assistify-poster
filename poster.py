@@ -482,6 +482,214 @@ The question is: will your brand be part of this future?
 #aistorytelling #aigeneratedvideo #futureofmarketing #brandvideo #contentcreator
 #videomarketing #aimarketing #reels #digitalmarketing #aitools
 #socialmediamarketing #contentcreation #marketingagency #businessgrowth #aicinema""",
+
+    "ig_queue_3/video_1234": """Nature meets AI. The most powerful combination in modern storytelling. 🌿🤖
+
+——
+
+Four stunning AI-generated scenes, seamlessly woven into one cinematic experience.
+This is what we create for brands at Assistify AI — content that stops the scroll.
+
+💡 Want a free AI video for your business?
+→ Comment "AI" and we'll send you everything
+→ assistifyai-official.netlify.app
+
+——
+
+#aivideo #aistorytelling #naturevideo #aigeneratedvideo #contentcreator
+#videomarketing #aimarketing #reels #digitalmarketing #aitools
+#socialmediamarketing #contentcreation #marketingagency #businessgrowth #aicinema""",
+
+    "ig_queue_3/video_56": """Two worlds. One AI vision. Completely breathtaking. 🎬🌍
+
+——
+
+These scenes were never filmed — they were imagined and built entirely by AI.
+At Assistify AI, we turn creative visions into cinematic brand moments.
+
+💡 Ready to create something unforgettable?
+→ Comment "AI" for a free step-by-step guide
+→ assistifyai-official.netlify.app/#waitlist
+
+——
+
+#aigeneratedvideo #aicinema #brandstorytelling #contentcreator #videomarketing
+#aimarketing #reels #digitalmarketing #aitools #contentcreation
+#socialmediamarketing #marketingagency #businessgrowth #aivideo #futureofmarketing""",
+
+    "ig_queue_3/video_a": """The AI revolution in content creation is already here. 🤖⚡
+
+——
+
+Futuristic. Fast. Powerful. This is what AI-generated brand content looks like in 2025.
+Assistify AI builds this for your brand — no camera, no crew, no limits.
+
+💡 Want AI content for your business?
+→ Comment "AI" — free guide in your DMs
+→ assistifyai-official.netlify.app
+
+——
+
+#aivideo #aimarketing #futureofmarketing #contentcreator #digitalmarketing
+#videomarketing #aitools #reels #brandvideo #contentcreation
+#socialmediamarketing #marketingagency #businessgrowth #aicontentcreation #aicinema""",
+
+    "ig_queue_3/video_b": """AI doesn't just create content — it creates worlds. 🌐🎥
+
+——
+
+Every visual, every detail, every moment — crafted by artificial intelligence.
+This is the kind of brand content that makes people stop, watch, and remember.
+Assistify AI makes it happen for you.
+
+💡 Want your brand to look like this?
+→ Comment "AI" for a free video guide
+→ assistifyai-official.netlify.app
+
+——
+
+#aigeneratedvideo #aicinema #brandvideo #contentcreator #videomarketing
+#aimarketing #reels #digitalmarketing #aitools #contentcreation
+#socialmediamarketing #marketingagency #businessgrowth #aistorytelling #futurism""",
+
+    "ig_queue_3/video_c": """Real stories. AI visuals. Zero compromise. 🎞️✨
+
+——
+
+The best storytelling combines authentic emotion with cutting-edge visuals.
+At Assistify AI, we bring both together for brands who want to stand out.
+
+💡 Want this for your brand?
+→ Comment "AI" and we'll show you how
+→ assistifyai-official.netlify.app
+
+——
+
+#aivideo #brandstorytelling #aigeneratedcontent #contentcreator #videomarketing
+#aimarketing #reels #digitalmarketing #aitools #contentcreation
+#socialmediamarketing #marketingagency #businessgrowth #aicinema #ugcvideo""",
+
+    "ig_queue_3/video_d": """Vertical. Cinematic. 100% AI-generated. 📱🎬
+
+——
+
+Mobile-first content that doesn't sacrifice quality.
+Every frame of this video was built by AI — optimized for the way people actually consume content today.
+This is Assistify AI.
+
+💡 Get your free AI video guide:
+→ Comment "AI" right now
+→ assistifyai-official.netlify.app/#waitlist
+
+——
+
+#aivideo #mobilecontent #aigeneratedvideo #contentcreator #videomarketing
+#aimarketing #reels #digitalmarketing #aitools #contentcreation
+#socialmediamarketing #marketingagency #businessgrowth #aicinema #brandvideo""",
+
+    "ig_queue_3/video_e": """Epic. Dramatic. Built entirely by AI. 🏆🎬
+
+——
+
+This is the new standard for brand video production.
+No studio. No budget limitations. Just pure AI creativity at its finest.
+Assistify AI delivers this level of quality for every client.
+
+💡 Ready to elevate your brand?
+→ Comment "AI" for a free consultation
+→ assistifyai-official.netlify.app
+
+——
+
+#epicvideo #aicinema #aigeneratedvideo #brandvideo #contentcreator
+#videomarketing #aimarketing #reels #digitalmarketing #aitools
+#socialmediamarketing #contentcreation #marketingagency #businessgrowth #aivideo""",
+
+    "ig_queue_3/video_ttt": """Good morning. This video was made with AI. ☀️🎸
+
+——
+
+Start your day with something beautiful — and a reminder of what AI can create.
+At Assistify AI, we craft morning-worthy content that your audience will love.
+
+💡 Want content like this for your brand?
+→ Comment "AI" for a free guide
+→ assistifyai-official.netlify.app
+
+——
+
+#morningvibes #aivideo #aigeneratedvideo #contentcreator #videomarketing
+#aimarketing #reels #digitalmarketing #aitools #contentcreation
+#socialmediamarketing #marketingagency #businessgrowth #goodmorning #aicinema""",
+
+    "ig_queue_3/video_w": """Wide. Cinematic. Completely AI. 🎥🌅
+
+——
+
+Widescreen storytelling, crafted entirely by artificial intelligence.
+No location. No production crew. Just vision — and the power of AI.
+Assistify AI brings this to your brand.
+
+💡 Comment "AI" for a free video for your business
+→ assistifyai-official.netlify.app
+
+——
+
+#cinematicvideo #aigeneratedvideo #aivideo #contentcreator #videomarketing
+#aimarketing #reels #digitalmarketing #aitools #contentcreation
+#socialmediamarketing #marketingagency #businessgrowth #aicinema #brandvideo""",
+
+    "ig_queue_3/video_ww": """Short. Powerful. 100% AI-generated. ⚡🎬
+
+——
+
+Even in just a few seconds, AI can tell a complete brand story.
+This is the future of short-form content — and it's available to your brand right now.
+
+💡 Want AI short-form content for your business?
+→ Comment "AI" for everything you need
+→ assistifyai-official.netlify.app
+
+——
+
+#shortformcontent #aivideo #aigeneratedvideo #contentcreator #videomarketing
+#aimarketing #reels #digitalmarketing #aitools #contentcreation
+#socialmediamarketing #marketingagency #businessgrowth #aicinema #brandvideo""",
+
+    "ig_queue_3/video_www": """Eight seconds of pure AI magic. 🪄🎬
+
+——
+
+Every moment of this video was created by artificial intelligence.
+No camera ever captured this scene — it exists only because AI made it real.
+This is what Assistify AI does for brands every single day.
+
+💡 Let's create your AI video:
+→ Comment "AI" for a free guide
+→ assistifyai-official.netlify.app
+
+——
+
+#aivideo #aimagic #aigeneratedvideo #contentcreator #videomarketing
+#aimarketing #reels #digitalmarketing #aitools #contentcreation
+#socialmediamarketing #marketingagency #businessgrowth #aicinema #brandstorytelling""",
+
+    "ig_queue_3/video_x": """Bold. Epic. Viking-level AI storytelling. ⚔️🎬
+
+——
+
+Power. Drama. Atmosphere. All created by artificial intelligence.
+When your brand needs content that commands attention — this is what Assistify AI delivers.
+
+💡 Want powerful AI content for your brand?
+→ Comment "AI" — free guide waiting for you
+→ assistifyai-official.netlify.app
+
+——
+
+#epicvideo #aicinema #aigeneratedvideo #brandvideo #contentcreator
+#videomarketing #aimarketing #reels #digitalmarketing #aitools
+#socialmediamarketing #contentcreation #marketingagency #businessgrowth #boldcontent""",
 }
 # ──────────────────────────────────────────────────────────────────────────────
 
