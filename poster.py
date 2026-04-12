@@ -522,6 +522,7 @@ def post_instagram(video_url: str) -> bool:
         "media_type":    "REELS",
         "caption":       CAPTION_IG,
         "share_to_feed": "true",
+        "thumb_offset":  "1000",
         "access_token":  IG_TOKEN,
     })
     if r.status_code != 200:
@@ -567,6 +568,7 @@ def post_instagram_2(video_url: str) -> bool:
         "media_type":    "REELS",
         "caption":       CAPTION_IG_2,
         "share_to_feed": "true",
+        "thumb_offset":  "1000",
         "access_token":  IG_TOKEN,
     }
 
@@ -752,6 +754,7 @@ def post_instagram_3(video_url: str, caption: str) -> bool:
             "video_url":     video_url,
             "caption":       caption,
             "share_to_feed": "true",
+            "thumb_offset":  "1000",
             "access_token":  IG_TOKEN,
         }
     )
