@@ -1155,19 +1155,153 @@ def tiktok_verify2():
 
 @app.route("/terms")
 def terms():
-    return """<html><body><h1>Terms of Service</h1>
-    <p>Assistify Poster is an automated content publishing tool for social media platforms.
-    By using this service, you agree to comply with all applicable platform terms of service.
-    This tool is for authorized account owners only.</p>
-    <p>Contact: assistifyai-official.netlify.app</p></body></html>"""
+    return """<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — Assistify Multi-Platform Poster</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #111; line-height: 1.7; }
+  .container { max-width: 760px; margin: 0 auto; padding: 60px 24px; }
+  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+  .updated { color: #888; font-size: 0.9rem; margin-bottom: 48px; }
+  h2 { font-size: 1.15rem; font-weight: 600; margin: 36px 0 12px; }
+  p, li { color: #444; margin-bottom: 12px; }
+  ul { padding-left: 20px; }
+  a { color: #111; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Terms of Service</h1>
+  <p class="updated">Last updated: April 2026 &mdash; Assistify, Freiburg im Breisgau</p>
+
+  <h2>1. Acceptance of Terms</h2>
+  <p>By using Assistify Multi-Platform Poster ("the Service"), you agree to these Terms of Service. The Service is an automated content publishing tool for Instagram, Facebook, and TikTok. Use is restricted to authorized account owners only.</p>
+
+  <h2>2. Description of Service</h2>
+  <p>Assistify Multi-Platform Poster enables automated scheduling and publishing of video content to social media platforms including Instagram, Facebook, and TikTok on behalf of the authorized account owner.</p>
+
+  <h2>3. TikTok Integration</h2>
+  <p>The Service integrates with the TikTok for Developers API. By authorizing this integration:</p>
+  <ul>
+    <li>You grant the Service permission to publish videos to your TikTok account on your behalf.</li>
+    <li>You confirm you are the authorized owner of the TikTok account being connected.</li>
+    <li>You agree to use this integration only for publishing lawful, original content.</li>
+    <li>You agree not to use this Service for spam, mass automated interactions, or any violation of TikTok's Community Guidelines or Terms of Service.</li>
+    <li>You acknowledge that all content published through this Service to your TikTok account is your sole responsibility.</li>
+    <li>You may revoke TikTok access at any time via TikTok's account settings under "Connected Apps".</li>
+  </ul>
+  <p>This Service is not affiliated with, endorsed by, or sponsored by TikTok Inc. or ByteDance Ltd.</p>
+
+  <h2>4. Permitted Use</h2>
+  <p>You may use this Service only for lawful purposes and in accordance with all applicable platform terms of service (Meta, TikTok). You must not use the Service to post content that violates any applicable laws or platform policies.</p>
+
+  <h2>5. Intellectual Property</h2>
+  <p>You retain all rights to the content you publish through this Service. You grant the Service a limited license to transmit your content to the designated platforms solely for the purpose of fulfilling scheduled posts.</p>
+
+  <h2>6. Disclaimer of Warranties</h2>
+  <p>The Service is provided "as is" without warranties of any kind. We do not guarantee uninterrupted availability, particularly in cases of API changes by third-party platforms (Meta, TikTok).</p>
+
+  <h2>7. Limitation of Liability</h2>
+  <p>Assistify shall not be liable for any indirect, incidental, or consequential damages arising from the use of this Service. Liability is limited to the value of services rendered.</p>
+
+  <h2>8. Governing Law</h2>
+  <p>These Terms are governed by the laws of the Federal Republic of Germany. Place of jurisdiction is Freiburg im Breisgau.</p>
+
+  <h2>9. Contact</h2>
+  <p>Nabel Alsulaiman &mdash; Assistify<br>
+  Email: <a href="mailto:assistifyai.yba@gmail.com">assistifyai.yba@gmail.com</a></p>
+</div>
+</body>
+</html>"""
 
 @app.route("/privacy")
 def privacy():
-    return """<html><body><h1>Privacy Policy</h1>
-    <p>Assistify Poster does not collect or store personal user data beyond what is necessary
-    for authentication and content posting. Access tokens are stored securely as environment
-    variables and are never shared with third parties.</p>
-    <p>Contact: assistifyai-official.netlify.app</p></body></html>"""
+    return """<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Assistify Multi-Platform Poster</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #111; line-height: 1.7; }
+  .container { max-width: 760px; margin: 0 auto; padding: 60px 24px; }
+  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+  .updated { color: #888; font-size: 0.9rem; margin-bottom: 48px; }
+  h2 { font-size: 1.15rem; font-weight: 600; margin: 36px 0 12px; }
+  p, li { color: #444; margin-bottom: 12px; }
+  ul { padding-left: 20px; }
+  a { color: #111; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: April 2026 &mdash; Assistify, Freiburg im Breisgau</p>
+
+  <p>Assistify Multi-Platform Poster ("we", "the Service") is an automated social media scheduling tool that publishes video content to Instagram, Facebook, and TikTok on behalf of authorized account owners.</p>
+
+  <h2>1. Data Controller</h2>
+  <p>Nabel Alsulaiman, Sundgauallee 26, 79110 Freiburg im Breisgau, Germany.<br>
+  Email: <a href="mailto:assistifyai.yba@gmail.com">assistifyai.yba@gmail.com</a></p>
+
+  <h2>2. Information We Collect</h2>
+  <ul>
+    <li><strong>Account identifiers:</strong> Instagram User ID, Facebook Page ID, TikTok User ID.</li>
+    <li><strong>Access tokens:</strong> OAuth tokens issued by Meta and TikTok to post on your behalf.</li>
+    <li><strong>Video content:</strong> Videos you provide for scheduled posting, stored via Cloudinary.</li>
+    <li><strong>Settings:</strong> Posting time preferences and caption configurations.</li>
+  </ul>
+
+  <h2>3. How We Use Your Data</h2>
+  <p>We use collected data solely to authenticate with Instagram, Facebook, and TikTok on your behalf and to publish your scheduled videos. We do not sell, share, or use your data for advertising.</p>
+
+  <h2>4. TikTok API — Data Access &amp; Usage</h2>
+  <p>This Service integrates with the TikTok for Developers API to enable authorized users to schedule and publish video content on TikTok. This integration occurs only with your explicit authorization via TikTok's official OAuth 2.0 flow.</p>
+  <p>TikTok permissions we request:</p>
+  <ul>
+    <li><strong>user.info.basic:</strong> To retrieve your TikTok display name for display within the Service.</li>
+    <li><strong>video.publish:</strong> To publish videos to your TikTok account at your scheduled time.</li>
+    <li><strong>video.upload:</strong> To upload video files to TikTok's servers for publishing.</li>
+  </ul>
+  <p>TikTok data we store:</p>
+  <ul>
+    <li>Your TikTok OAuth access token (stored securely as an environment variable, used only for posting)</li>
+    <li>Video metadata such as title and privacy level (set by you)</li>
+  </ul>
+  <p>We do <strong>not</strong> read your TikTok messages, followers, comments, or analytics. We do not share TikTok data with third parties or use it for any purpose other than publishing your scheduled content.</p>
+  <p>To revoke TikTok access, contact us or go to TikTok Settings &rarr; Security &rarr; Connected Apps and remove this Service. All stored tokens are immediately deleted upon revocation.</p>
+  <p>This Service is not affiliated with TikTok Inc. or ByteDance Ltd. See <a href="https://www.tiktok.com/legal/privacy-policy" target="_blank">TikTok's Privacy Policy</a> for details on how TikTok handles your data.</p>
+
+  <h2>5. Facebook &amp; Instagram Data</h2>
+  <p>We access instagram_content_publish, pages_manage_posts, pages_show_list, and pages_read_engagement permissions — the minimum required for scheduling and publishing. We do not access messages, contacts, or personal profile data beyond what is needed for posting.</p>
+
+  <h2>6. Data Retention &amp; Security</h2>
+  <p>Access tokens are stored securely as environment variables on Railway's infrastructure. Videos are stored on Cloudinary. You can request deletion of all your data by contacting us at the email below.</p>
+
+  <h2>7. Your Rights</h2>
+  <ul>
+    <li>Right to access the data we hold about you</li>
+    <li>Right to request deletion of your data</li>
+    <li>Right to revoke platform access at any time</li>
+  </ul>
+
+  <h2>8. Third-Party Services</h2>
+  <ul>
+    <li><strong>TikTok API</strong> &mdash; content publishing</li>
+    <li><strong>Meta (Facebook/Instagram Graph API)</strong> &mdash; content publishing</li>
+    <li><strong>Cloudinary</strong> &mdash; video storage</li>
+    <li><strong>Railway</strong> &mdash; hosting &amp; infrastructure</li>
+    <li><strong>Anthropic Claude</strong> &mdash; AI caption generation (optional)</li>
+  </ul>
+
+  <h2>9. Contact</h2>
+  <p>Nabel Alsulaiman &mdash; Assistify<br>
+  Email: <a href="mailto:assistifyai.yba@gmail.com">assistifyai.yba@gmail.com</a></p>
+
+  <h2>10. Changes</h2>
+  <p>We may update this Privacy Policy. Changes will be reflected by updating the date at the top of this page.</p>
+</div>
+</body>
+</html>"""
 
 @app.route("/debug_tiktok")
 def debug_tiktok():
