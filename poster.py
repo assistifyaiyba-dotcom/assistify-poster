@@ -1045,7 +1045,51 @@ def daily_post_evening():
 # ─── Routes ───────────────────────────────────────────────────────────────────
 @app.route("/")
 def home():
-    return jsonify({"status": "running", "service": "Assistify Multi-Platform Poster"})
+    return """<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assistify — Multi-Platform Content Poster</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+         background: #08090e; color: #fff; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+  .card { max-width: 560px; text-align: center; padding: 60px 40px; }
+  .badge { display: inline-block; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+           color: #aaa; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+           padding: 6px 16px; border-radius: 100px; margin-bottom: 28px; }
+  h1 { font-size: 2.4rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+  h1 span { color: #c9a84c; }
+  p { color: #888; font-size: 1rem; line-height: 1.7; margin-bottom: 40px; }
+  .features { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+  .feature { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+             border-radius: 10px; padding: 16px 20px; font-size: 14px; color: #ccc; }
+  .links { display: flex; gap: 24px; justify-content: center; font-size: 13px; }
+  .links a { color: #c9a84c; text-decoration: none; }
+  .links a:hover { text-decoration: underline; }
+  .status { display: inline-flex; align-items: center; gap: 8px; color: #4ade80; font-size: 13px; margin-bottom: 32px; }
+  .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="badge">Assistify AI</div>
+  <h1>Multi-Platform <span>Content Poster</span></h1>
+  <div class="status"><div class="dot"></div> Service running</div>
+  <p>Automated video scheduling and publishing for TikTok, Instagram, and Facebook. Built for content creators and brands.</p>
+  <div class="features">
+    <div class="feature">TikTok Publishing</div>
+    <div class="feature">Instagram Reels</div>
+    <div class="feature">Facebook Video</div>
+    <div class="feature">Auto Scheduling</div>
+  </div>
+  <div class="links">
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+    <a href="mailto:assistifyai.yba@gmail.com">Contact</a>
+  </div>
+</div>
+</body>
+</html>"""
 
 @app.route("/post_now")
 def post_now():
