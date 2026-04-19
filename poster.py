@@ -1396,6 +1396,38 @@ scheduler.add_job(daily_post_noon, CronTrigger(hour=12, minute=0, timezone=BERLI
 scheduler.add_job(daily_post_evening, CronTrigger(hour=20, minute=0, timezone=BERLIN))  # Queue 3 — 20:00 Storytelling
 scheduler.start()
 
+@app.route("/post_image", methods=["POST"])
+def post_image():
+    """Post a custom image to Instagram. Body: { image_url, caption }"""
+    from flask import request as req
+    data = req.get_json()
+    if not data or "image_url" not in data or "caption" not in data:
+        return jsonify({"success": False, "error": "Missing image_url or caption"}), 400
+    if not IG_TOKEN:
+        return jsonify({"success": False, "error": "No Instagram token configured"}), 500
+
+    image_url = data["image_url"]
+    caption = data["caption"]
+
+    r = requests.post(
+        f"https://graph.instagram.com/v21.0/{IG_USER_ID}/media",
+        data={"image_url": image_url, "caption": caption, "access_token": IG_TOKEN}
+    )
+    if r.status_code != 200:
+        return jsonify({"success": False, "error": r.text}), 400
+
+    container_id = r.json().get("id")
+    time.sleep(8)
+
+    pub = requests.post(
+        f"https://graph.instagram.com/v21.0/{IG_USER_ID}/media_publish",
+        data={"creation_id": container_id, "access_token": IG_TOKEN}
+    )
+    if pub.status_code == 200:
+        return jsonify({"success": True, "post_id": pub.json().get("id")})
+    return jsonify({"success": False, "error": pub.text}), 400
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
     print(f"Multi-Platform Poster läuft | Port {port} | täglich 19:00 Berlin")
