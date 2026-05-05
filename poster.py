@@ -43,7 +43,7 @@ CAPTION_IG = """Your competitors are already using AI for their marketing videos
 🎬 Comment "AI" and I will send you a PDF with a step-by-step guide on how you can create similar videos.
 
 🏢 We also have a waitlist for free brand videos.
-→ Join here: assistifyai-official.netlify.app/#waitlist
+→ Join here: assistifyai.de/creativeverse
 
 ——
 
@@ -60,7 +60,7 @@ CAPTION_IG_2 = """Your competitors are already using AI for their marketing vide
 
 🏢 Want better, specialized videos for your business?
 → DM us or join the waitlist:
-assistifyai-official.netlify.app/#waitlist
+assistifyai.de/creativeverse
 
 🎬 Want to create similar videos yourself?
 → Comment "AI" for a free step-by-step guide
@@ -112,7 +112,7 @@ Just a vision, the right tools, and Assistify AI.
 
 💡 Want a cinematic AI video for your brand?
 → Comment "AI" — we'll send you the full guide for free
-→ Or visit: assistifyai-official.netlify.app
+→ Or visit: assistifyai.de/creativeverse
 
 ——
 
@@ -130,7 +130,7 @@ This is the power we bring to your brand at Assistify AI.
 
 💡 Ready to stand out?
 → Comment "AI" for a free step-by-step guide
-→ Or visit: assistifyai-official.netlify.app
+→ Or visit: assistifyai.de/creativeverse
 
 ——
 
@@ -147,7 +147,7 @@ Assistify AI turns your brand story into a visual masterpiece.
 
 💡 Want this for your business?
 → Comment "AI" and we'll show you how
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -165,7 +165,7 @@ We make this happen for brands at Assistify AI.
 
 💡 Want cinematic AI content for your brand?
 → Comment "AI" for the free guide
-→ Or join the waitlist: assistifyai-official.netlify.app/#waitlist
+→ Or join the waitlist: assistifyai.de/creativeverse
 
 ——
 
@@ -183,7 +183,7 @@ We help brands get there — with Assistify AI.
 
 💡 Want to be ahead of the curve?
 → Comment "AI" for your free video guide
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -201,7 +201,7 @@ At Assistify AI, we turn ideas into cinematic reality.
 
 💡 Want a free AI video for your brand?
 → Comment "AI" and we'll send you everything
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -219,7 +219,7 @@ And we're already there at Assistify AI.
 
 💡 Get ahead of the wave:
 → Comment "AI" for a free guide to AI video creation
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -237,7 +237,7 @@ This is what Assistify AI builds for brands like yours.
 
 💡 Want your own AI cinematic video?
 → Comment "AI" — we'll send you a full guide for free
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -255,7 +255,7 @@ Assistify AI is your creative partner in this new world.
 
 💡 Ready to tell your brand's story?
 → Comment "AI" for a free step-by-step guide
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -273,7 +273,7 @@ We bring it to you at Assistify AI.
 
 💡 Want this for your brand?
 → Comment "AI" for our free AI video guide
-→ Or visit: assistifyai-official.netlify.app
+→ Or visit: assistifyai.de/creativeverse
 
 ——
 
@@ -291,7 +291,7 @@ Your audience won't just watch — they'll remember.
 
 💡 Get your free AI video:
 → Comment "AI" and we'll send you the guide
-→ assistifyai-official.netlify.app/#waitlist
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -309,7 +309,7 @@ Assistify AI is your shortcut to the future.
 
 💡 Be an early mover:
 → Comment "AI" for a free video guide
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -327,7 +327,7 @@ This is what Assistify AI does for brands every day.
 
 💡 Want to see what we'd create for your brand?
 → Comment "AI" — we'll send everything you need
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -346,7 +346,7 @@ Assistify AI helps you win too.
 
 💡 Start creating with AI today:
 → Comment "AI" for your free guide
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -364,7 +364,7 @@ That's the Assistify AI difference.
 
 💡 Ready to create something unforgettable?
 → Comment "AI" and we'll guide you step by step
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -382,7 +382,7 @@ Assistify AI helps you build that connection through AI-generated film.
 
 💡 Want to connect with your audience like this?
 → Comment "AI" for a free video guide
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -400,7 +400,7 @@ This is the new reality of content production — and it's available to your bra
 
 💡 Want AI video for your business?
 → Comment "AI" for the free guide
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -418,7 +418,7 @@ Assistify AI is at the forefront of this revolution.
 
 💡 Join the revolution:
 → Comment "AI" for your free step-by-step guide
-→ assistifyai-official.netlify.app/#waitlist
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -436,7 +436,7 @@ Assistify AI gives you the edge before everyone else catches up.
 
 💡 Claim your advantage now:
 → Comment "AI" — we'll send you the full guide
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -454,7 +454,7 @@ At Assistify AI, we combine both to create videos that convert.
 
 💡 See what we'd create for your brand:
 → Comment "AI" for a free guide + consultation
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -472,7 +472,7 @@ The question is: will your brand be part of this future?
 
 💡 Let's create something incredible together:
 → Comment "AI" for a free video guide
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 → Follow us for daily AI content 💡
 
 ——
@@ -490,7 +490,7 @@ This is what we create for brands at Assistify AI — content that stops the scr
 
 💡 Want a free AI video for your business?
 → Comment "AI" and we'll send you everything
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -507,7 +507,7 @@ At Assistify AI, we turn creative visions into cinematic brand moments.
 
 💡 Ready to create something unforgettable?
 → Comment "AI" for a free step-by-step guide
-→ assistifyai-official.netlify.app/#waitlist
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -524,7 +524,7 @@ Assistify AI builds this for your brand — no camera, no crew, no limits.
 
 💡 Want AI content for your business?
 → Comment "AI" — free guide in your DMs
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -542,7 +542,7 @@ Assistify AI makes it happen for you.
 
 💡 Want your brand to look like this?
 → Comment "AI" for a free video guide
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -559,7 +559,7 @@ At Assistify AI, we bring both together for brands who want to stand out.
 
 💡 Want this for your brand?
 → Comment "AI" and we'll show you how
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -577,7 +577,7 @@ This is Assistify AI.
 
 💡 Get your free AI video guide:
 → Comment "AI" right now
-→ assistifyai-official.netlify.app/#waitlist
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -595,7 +595,7 @@ Assistify AI delivers this level of quality for every client.
 
 💡 Ready to elevate your brand?
 → Comment "AI" for a free consultation
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -612,7 +612,7 @@ At Assistify AI, we craft morning-worthy content that your audience will love.
 
 💡 Want content like this for your brand?
 → Comment "AI" for a free guide
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -629,7 +629,7 @@ No location. No production crew. Just vision — and the power of AI.
 Assistify AI brings this to your brand.
 
 💡 Comment "AI" for a free video for your business
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -646,7 +646,7 @@ This is the future of short-form content — and it's available to your brand ri
 
 💡 Want AI short-form content for your business?
 → Comment "AI" for everything you need
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -664,7 +664,7 @@ This is what Assistify AI does for brands every single day.
 
 💡 Let's create your AI video:
 → Comment "AI" for a free guide
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
@@ -681,7 +681,7 @@ When your brand needs content that commands attention — this is what Assistify
 
 💡 Want powerful AI content for your brand?
 → Comment "AI" — free guide waiting for you
-→ assistifyai-official.netlify.app
+→ assistifyai.de/creativeverse
 
 ——
 
