@@ -54,6 +54,24 @@ CAPTION_IG = """Your competitors are already using AI for their marketing videos
 
 CAPTION_FB = CAPTION_IG
 
+CAPTION_IG_4 = """Your competitors are already using AI for their marketing videos. 👀
+
+——
+
+🎬 Comment "AI" and I will send you a PDF with a step-by-step guide on how you can create similar videos.
+
+🏢 We also have a waitlist for free brand videos.
+→ Join here: assistifyai.de/creativeverse
+
+——
+
+#aimarketing #aivideo #ugcvideo #contentcreator #digitalmarketing
+#videomarketing #contentmarketing #brandvideo #ugccreator #aitools
+#videoads #socialmediamarketing #marketingagency #contentcreation #reels
+#aicontentcreation #videoproduction #marketingtips #businessgrowth #startupmarketing"""
+
+CAPTION_FB_4 = CAPTION_IG_4
+
 CAPTION_IG_2 = """Your competitors are already using AI for their marketing videos. 👀
 
 ——
@@ -1099,6 +1117,11 @@ def post_now_noon():
     threading.Thread(target=daily_post_noon, daemon=True).start()
     return jsonify({"status": "Queue 2 gestartet — check logs"})
 
+@app.route("/post_now_4")
+def post_now_4():
+    threading.Thread(target=daily_post_4, daemon=True).start()
+    return jsonify({"status": "Queue 4 gestartet — check logs"})
+
 @app.route("/post_now_evening")
 def post_now_evening():
     threading.Thread(target=daily_post_evening, daemon=True).start()
@@ -1387,11 +1410,74 @@ def tiktok_callback():
     print(f"TikTok Access Token: {token}")
     return jsonify({"access_token": token, "full_response": data})
 
+def daily_post_4():
+    now = datetime.now(BERLIN)
+    print(f"\n{'='*50}")
+    print(f"Daily Post 20:00 (Queue 4 - Alte Videos): {now.strftime('%d.%m.%Y %H:%M')} Berlin")
+    print(f"{'='*50}")
+
+    video = get_next_video("ig_queue_4")
+    if not video:
+        print("Queue 4 leer — keine Videos mehr!")
+        return
+
+    video_url = video.get("secure_url")
+    public_id = video.get("public_id")
+    order = video.get("context", {}).get("custom", {}).get("post_order", "?")
+    print(f"Video #{order}: {public_id}\n")
+
+    ig_ok = post_instagram_with_caption(video_url, CAPTION_IG_4)
+    time.sleep(5)
+    fb_ok = post_facebook_with_caption(video_url, CAPTION_FB_4)
+
+    print(f"\nErgebnis: Instagram={'✓' if ig_ok else '✗'} | Facebook={'✓' if fb_ok else '✗'}")
+
+    if ig_ok or fb_ok:
+        mark_as_posted(public_id)
+
+
+def post_instagram_with_caption(video_url: str, caption: str) -> bool:
+    if not IG_TOKEN:
+        return False
+    base = f"https://graph.instagram.com/v21.0/{IG_USER_ID}"
+    r = requests.post(f"{base}/media", data={
+        "video_url": video_url, "media_type": "REELS", "caption": caption,
+        "share_to_feed": "true", "thumb_offset": "1000", "access_token": IG_TOKEN,
+    })
+    if r.status_code != 200:
+        print(f"Container-Fehler: {r.text}")
+        return False
+    container_id = r.json().get("id")
+    for attempt in range(20):
+        time.sleep(15)
+        s = requests.get(
+            f"https://graph.instagram.com/v21.0/{container_id}",
+            params={"fields": "status_code", "access_token": IG_TOKEN}
+        ).json().get("status_code", "")
+        if s == "FINISHED":
+            break
+        if s == "ERROR":
+            return False
+    pub = requests.post(f"{base}/media_publish", data={"creation_id": container_id, "access_token": IG_TOKEN})
+    return pub.status_code == 200
+
+
+def post_facebook_with_caption(video_url: str, caption: str) -> bool:
+    if not FB_PAGE_TOKEN:
+        return False
+    r = requests.post(
+        f"https://graph-video.facebook.com/v21.0/{FB_PAGE_ID}/videos",
+        data={"file_url": video_url, "description": caption, "published": "true", "access_token": FB_PAGE_TOKEN}
+    )
+    return r.status_code == 200
+
+
 # ─── Scheduler ────────────────────────────────────────────────────────────────
 scheduler = BackgroundScheduler(timezone=BERLIN)
-scheduler.add_job(daily_post, CronTrigger(hour=19, minute=0, timezone=BERLIN))       # Queue 1 — 19:00 Freiburg
-scheduler.add_job(daily_post_noon, CronTrigger(hour=12, minute=0, timezone=BERLIN))  # Queue 2 — 12:00 Abu Dhabi
-scheduler.add_job(daily_post_evening, CronTrigger(hour=20, minute=0, timezone=BERLIN))  # Queue 3 — 20:00 Storytelling
+scheduler.add_job(daily_post, CronTrigger(hour=19, minute=0, timezone=BERLIN))        # Queue 1 — 19:00 Batch5
+scheduler.add_job(daily_post_noon, CronTrigger(hour=12, minute=0, timezone=BERLIN))   # Queue 2 — 12:00 Abu Dhabi
+scheduler.add_job(daily_post_4, CronTrigger(hour=20, minute=0, timezone=BERLIN))      # Queue 4 — 20:00 Alte Videos
+scheduler.add_job(daily_post_evening, CronTrigger(hour=21, minute=0, timezone=BERLIN))# Queue 3 — 21:00 Storytelling
 scheduler.start()
 
 @app.route("/post_image", methods=["POST"])
