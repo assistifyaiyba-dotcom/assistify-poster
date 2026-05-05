@@ -36,23 +36,21 @@ CLOUDINARY_CLOUD  = os.environ.get("CLOUDINARY_CLOUD_NAME", "dlv8ebddq")
 CLOUDINARY_KEY    = os.environ.get("CLOUDINARY_API_KEY", "837591974475139")
 CLOUDINARY_SECRET = os.environ.get("CLOUDINARY_API_SECRET", "1wHQz08D45SYbFg7vuecfVMaOac")
 
-CAPTION_IG = """Deine Konkurrenz nutzt bereits KI für ihre Marketing-Videos. 👀
+CAPTION_IG = """Your competitors are already using AI for their marketing videos. 👀
 
 ——
 
-🏢 Du willst auch bessere, spezialisierte Videos für dein Business?
-→ Schreib uns eine DM oder trag dich in die Warteliste ein:
-assistifyai-official.netlify.app/#waitlist
+🎬 Comment "AI" and I will send you a PDF with a step-by-step guide on how you can create similar videos.
 
-🎬 Du willst ähnliche Videos selbst erstellen?
-→ Kommentiere "KI" für eine kostenlose Schritt-für-Schritt-Anleitung
+🏢 We also have a waitlist for free brand videos.
+→ Join here: assistifyai-official.netlify.app/#waitlist
 
 ——
 
-#kimarketing #kivideo #ugcvideo #contentcreator #digitalmarketing
-#videomarketing #contentmarketing #brandvideo #ugccreator #kitools
-#videowerbung #socialmediamarketing #marketingagentur #contentcreation #reels
-#kicontent #videoproduktion #marketingtipps #unternehmenswachstum #startupmarketing"""
+#aimarketing #aivideo #ugcvideo #contentcreator #digitalmarketing
+#videomarketing #contentmarketing #brandvideo #ugccreator #aitools
+#videoads #socialmediamarketing #marketingagency #contentcreation #reels
+#aicontentcreation #videoproduction #marketingtips #businessgrowth #startupmarketing"""
 
 CAPTION_FB = CAPTION_IG
 
@@ -78,8 +76,8 @@ CAPTION_FB_2 = CAPTION_IG_2
 
 CAPTION_TT = """Your competitors are already using AI for their marketing videos. 👀
 
-🏢 Want videos for your business? DM us or join the waitlist → link in bio
-🎬 Want to make these yourself? Comment "AI" for a free guide
+🎬 Comment "AI" and I will send you a PDF with a step-by-step guide on how you can create similar videos.
+🏢 We also have a waitlist for free videos for brands → link in bio
 
 #aimarketing #aivideo #ugcvideo #contentcreator #digitalmarketing
 #videomarketing #contentmarketing #brandvideo #ugccreator #aitools
