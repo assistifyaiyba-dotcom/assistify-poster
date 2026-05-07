@@ -1190,6 +1190,19 @@ def find_location_abudhabi():
     )
     return jsonify(r.json())
 
+@app.route("/check_facebook_token")
+def check_facebook_token():
+    if not FB_PAGE_TOKEN:
+        return jsonify({"ok": False, "error": "Kein FB_PAGE_ACCESS_TOKEN gesetzt"})
+    r = requests.get(
+        f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}",
+        params={"fields": "name,id", "access_token": FB_PAGE_TOKEN}
+    )
+    data = r.json()
+    if "error" in data:
+        return jsonify({"ok": False, "error": data["error"].get("message"), "code": data["error"].get("code")})
+    return jsonify({"ok": True, "page_name": data.get("name"), "page_id": data.get("id")})
+
 @app.route("/test_facebook")
 def test_facebook():
     def run():
