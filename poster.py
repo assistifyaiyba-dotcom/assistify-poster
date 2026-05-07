@@ -10,6 +10,7 @@ import json
 import threading
 import requests
 from datetime import datetime
+from pathlib import Path
 from flask import Flask, jsonify
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
@@ -29,6 +30,7 @@ FB_PAGE_ID        = os.environ.get("FB_PAGE_ID", "61579625669890")
 TIKTOK_TOKEN      = os.environ.get("TIKTOK_ACCESS_TOKEN", "")    # TikTok Token
 TIKTOK_CLIENT_KEY = os.environ.get("TIKTOK_CLIENT_KEY", "")
 TIKTOK_CLIENT_SECRET = os.environ.get("TIKTOK_CLIENT_SECRET", "")
+TIKTOK_TOKEN_FILE = Path(__file__).with_name("tiktok_token.json")
 LOCATION_ID       = "107681779263786"   # Freiburg im Breisgau
 LOCATION_ID_2     = "110953905611108"   # Abu Dhabi, UAE
 
@@ -118,6 +120,32 @@ This is what we build for brands at Assistify AI.
 #reels #socialmediamarketing #marketingagency #businessgrowth #aicontentcreation"""
 
 CAPTION_FB_3 = CAPTION_IG_3
+
+def get_tiktok_token_data() -> dict:
+    if TIKTOK_TOKEN:
+        return {"access_token": TIKTOK_TOKEN, "source": "env"}
+    if TIKTOK_TOKEN_FILE.exists():
+        try:
+            data = json.loads(TIKTOK_TOKEN_FILE.read_text(encoding="utf-8"))
+            if isinstance(data, dict):
+                return data
+        except Exception as e:
+            print(f"TikTok Token-Datei konnte nicht gelesen werden: {e}")
+    return {}
+
+def get_tiktok_access_token() -> str:
+    return get_tiktok_token_data().get("access_token", "")
+
+def save_tiktok_token_data(data: dict) -> None:
+    try:
+        payload = dict(data)
+        payload["saved_at"] = datetime.now(BERLIN).isoformat()
+        TIKTOK_TOKEN_FILE.write_text(
+            json.dumps(payload, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+    except Exception as e:
+        print(f"TikTok Token-Datei konnte nicht gespeichert werden: {e}")
 
 # ─── Per-video captions for Queue 3 ──────────────────────────────────────────
 CAPTIONS_Q3 = {
@@ -870,17 +898,18 @@ def post_facebook(video_url: str, published: bool = True) -> bool:
     return False
 
 def post_tiktok(video_url: str) -> bool:
-    if not TIKTOK_TOKEN:
+    token = get_tiktok_access_token()
+    if not token:
         print("TikTok: kein Token — übersprungen")
         return False
 
-    print(f"TikTok: Token Länge: {len(TIKTOK_TOKEN)} | Anfang: {TIKTOK_TOKEN[:20]}")
+    print(f"TikTok: Token Länge: {len(token)} | Anfang: {token[:20]}")
     print("TikTok: Poste Video...")
     # TikTok Content Posting API v2
     r = requests.post(
         "https://open.tiktokapis.com/v2/post/publish/video/init/",
         headers={
-            "Authorization": f"Bearer {TIKTOK_TOKEN}",
+            "Authorization": f"Bearer {token}",
             "Content-Type": "application/json; charset=UTF-8",
         },
         json={
@@ -1223,7 +1252,7 @@ def terms():
     return """<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms of Service — Assistify Multi-Platform Poster</title>
+<title>Terms of Service — Assistify Poster</title>
 <style>
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #111; line-height: 1.7; }
   .container { max-width: 760px; margin: 0 auto; padding: 60px 24px; }
@@ -1238,13 +1267,13 @@ def terms():
 <body>
 <div class="container">
   <h1>Terms of Service</h1>
-  <p class="updated">Last updated: April 2026 &mdash; Assistify, Freiburg im Breisgau</p>
+  <p class="updated">Last updated: April 2026 &mdash; Assistify Poster, Freiburg im Breisgau</p>
 
   <h2>1. Acceptance of Terms</h2>
-  <p>By using Assistify Multi-Platform Poster ("the Service"), you agree to these Terms of Service. The Service is an automated content publishing tool for Instagram, Facebook, and TikTok. Use is restricted to authorized account owners only.</p>
+  <p>By using Assistify Poster ("the Service"), you agree to these Terms of Service. Assistify Poster is an automated content publishing tool for Instagram, Facebook, and TikTok. Use is restricted to authorized account owners only.</p>
 
   <h2>2. Description of Service</h2>
-  <p>Assistify Multi-Platform Poster enables automated scheduling and publishing of video content to social media platforms including Instagram, Facebook, and TikTok on behalf of the authorized account owner.</p>
+  <p>Assistify Poster enables automated scheduling and publishing of video content to social media platforms including Instagram, Facebook, and TikTok on behalf of the authorized account owner.</p>
 
   <h2>3. TikTok Integration</h2>
   <p>The Service integrates with the TikTok for Developers API. By authorizing this integration:</p>
@@ -1285,7 +1314,7 @@ def privacy():
     return """<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy — Assistify Multi-Platform Poster</title>
+<title>Privacy Policy — Assistify Poster</title>
 <style>
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #111; line-height: 1.7; }
   .container { max-width: 760px; margin: 0 auto; padding: 60px 24px; }
@@ -1300,9 +1329,9 @@ def privacy():
 <body>
 <div class="container">
   <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: April 2026 &mdash; Assistify, Freiburg im Breisgau</p>
+  <p class="updated">Last updated: April 2026 &mdash; Assistify Poster, Freiburg im Breisgau</p>
 
-  <p>Assistify Multi-Platform Poster ("we", "the Service") is an automated social media scheduling tool that publishes video content to Instagram, Facebook, and TikTok on behalf of authorized account owners.</p>
+  <p>Assistify Poster ("we", "the Service") is an automated social media scheduling tool that publishes video content to Instagram, Facebook, and TikTok on behalf of authorized account owners.</p>
 
   <h2>1. Data Controller</h2>
   <p>Nabel Alsulaiman, Sundgauallee 26, 79110 Freiburg im Breisgau, Germany.<br>
@@ -1370,11 +1399,12 @@ def privacy():
 
 @app.route("/debug_tiktok")
 def debug_tiktok():
-    if not TIKTOK_TOKEN:
+    token = get_tiktok_access_token()
+    if not token:
         return jsonify({"error": "Kein Token"})
     r = requests.get(
         "https://open.tiktokapis.com/v2/user/info/",
-        headers={"Authorization": f"Bearer {TIKTOK_TOKEN}"},
+        headers={"Authorization": f"Bearer {token}"},
         params={"fields": "open_id,display_name,avatar_url"}
     )
     return jsonify({"status": r.status_code, "response": r.json()})
@@ -1408,7 +1438,15 @@ def tiktok_callback():
     data = r.json()
     token = data.get("access_token", "")
     print(f"TikTok Access Token: {token}")
-    return jsonify({"access_token": token, "full_response": data})
+    if token:
+        save_tiktok_token_data(data)
+        return jsonify({
+            "ok": True,
+            "saved": True,
+            "access_token_prefix": token[:24],
+            "full_response": data,
+        })
+    return jsonify({"ok": False, "saved": False, "full_response": data}), 400
 
 def daily_post_4():
     now = datetime.now(BERLIN)
