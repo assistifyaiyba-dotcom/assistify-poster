@@ -877,6 +877,7 @@ def post_facebook_2(video_url: str) -> bool:
     return False
 
 def post_facebook(video_url: str, published: bool = True) -> bool:
+    FB_PAGE_TOKEN = get_fb_page_token()
     if not FB_PAGE_TOKEN:
         print("Facebook: kein Page Token — übersprungen")
         return False
@@ -1409,6 +1410,78 @@ def privacy():
 </div>
 </body>
 </html>"""
+
+FB_TOKEN_FILE = Path(__file__).with_name("fb_token.json")
+
+def get_fb_page_token() -> str:
+    if FB_PAGE_TOKEN:
+        return FB_PAGE_TOKEN
+    if FB_TOKEN_FILE.exists():
+        try:
+            data = json.loads(FB_TOKEN_FILE.read_text(encoding="utf-8"))
+            return data.get("access_token", "")
+        except Exception:
+            pass
+    return ""
+
+def save_fb_token(token: str) -> None:
+    try:
+        FB_TOKEN_FILE.write_text(
+            json.dumps({"access_token": token, "saved_at": datetime.now(BERLIN).isoformat()}, indent=2),
+            encoding="utf-8"
+        )
+    except Exception as e:
+        print(f"FB Token speichern fehlgeschlagen: {e}")
+
+@app.route("/fb/auth")
+def fb_auth():
+    if not META_APP_ID:
+        return "META_APP_ID nicht gesetzt", 500
+    base_url = os.environ.get("RAILWAY_PUBLIC_DOMAIN", "web-production-c56a1.up.railway.app")
+    redirect_uri = f"https://{base_url}/fb/callback"
+    scope = "pages_manage_posts,pages_read_engagement,pages_show_list,instagram_content_publish,instagram_manage_comments"
+    auth_url = (
+        f"https://www.facebook.com/v21.0/dialog/oauth"
+        f"?client_id={META_APP_ID}"
+        f"&redirect_uri={requests.utils.quote(redirect_uri)}"
+        f"&scope={scope}"
+        f"&response_type=code"
+    )
+    return f'<a href="{auth_url}" style="font-size:20px;font-family:sans-serif;">Mit Facebook verbinden (pages_manage_posts)</a>'
+
+@app.route("/fb/callback")
+def fb_callback():
+    code = request.args.get("code")
+    if not code:
+        return jsonify({"ok": False, "error": "Kein Code erhalten"})
+    base_url = os.environ.get("RAILWAY_PUBLIC_DOMAIN", "web-production-c56a1.up.railway.app")
+    redirect_uri = f"https://{base_url}/fb/callback"
+    # Exchange code for short-lived token
+    r = requests.get("https://graph.facebook.com/v21.0/oauth/access_token", params={
+        "client_id": META_APP_ID, "client_secret": META_APP_SECRET,
+        "redirect_uri": redirect_uri, "code": code
+    })
+    short_token = r.json().get("access_token", "")
+    if not short_token:
+        return jsonify({"ok": False, "error": "Token-Austausch fehlgeschlagen", "response": r.json()})
+    # Exchange for long-lived token
+    r2 = requests.get("https://graph.facebook.com/v21.0/oauth/access_token", params={
+        "grant_type": "fb_exchange_token", "client_id": META_APP_ID,
+        "client_secret": META_APP_SECRET, "fb_exchange_token": short_token
+    })
+    long_token = r2.json().get("access_token", "")
+    if not long_token:
+        return jsonify({"ok": False, "error": "Long-lived Token fehlgeschlagen"})
+    # Get Page Token
+    r3 = requests.get(f"https://graph.facebook.com/v21.0/{FB_PAGE_ID}", params={
+        "fields": "name,access_token", "access_token": long_token
+    })
+    page_data = r3.json()
+    page_token = page_data.get("access_token", "")
+    if not page_token:
+        return jsonify({"ok": False, "error": "Kein Page Token", "page_data": page_data})
+    save_fb_token(page_token)
+    return jsonify({"ok": True, "page_name": page_data.get("name"), "message": "Token gespeichert! Facebook sollte jetzt posten."})
 
 @app.route("/debug_tiktok")
 def debug_tiktok():
