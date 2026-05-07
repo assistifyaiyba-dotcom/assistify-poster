@@ -11,7 +11,7 @@ import threading
 import requests
 from datetime import datetime
 from pathlib import Path
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 import pytz
@@ -27,6 +27,8 @@ IG_TOKEN          = os.environ.get("INSTAGRAM_ACCESS_TOKEN", "")
 IG_USER_ID        = os.environ.get("INSTAGRAM_USER_ID", "26327994056810336")
 FB_PAGE_TOKEN     = os.environ.get("FB_PAGE_ACCESS_TOKEN", "")   # Facebook Page Token
 FB_PAGE_ID        = os.environ.get("FB_PAGE_ID", "61579625669890")
+META_APP_ID       = os.environ.get("META_APP_ID", "2063582944215113")
+META_APP_SECRET   = os.environ.get("META_APP_SECRET", "6de7e70cfe1585e840c71a5e956b3dd7")
 TIKTOK_TOKEN      = os.environ.get("TIKTOK_ACCESS_TOKEN", "")    # TikTok Token
 TIKTOK_CLIENT_KEY = os.environ.get("TIKTOK_CLIENT_KEY", "")
 TIKTOK_CLIENT_SECRET = os.environ.get("TIKTOK_CLIENT_SECRET", "")
