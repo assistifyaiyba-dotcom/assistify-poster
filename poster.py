@@ -1485,6 +1485,15 @@ def fb_callback():
     save_fb_token(page_token)
     return jsonify({"ok": True, "page_name": page_data.get("name"), "message": "Token gespeichert! Facebook sollte jetzt posten."})
 
+@app.route("/delete-data")
+def delete_data():
+    return """<html><body>
+<h1>Data Deletion Request</h1>
+<p>To request deletion of your data collected by Assistify Poster, please contact us at:</p>
+<p><strong>Email:</strong> assistifyai.yba@gmail.com</p>
+<p>We will process your request within 30 days.</p>
+</body></html>"""
+
 @app.route("/debug_tiktok")
 def debug_tiktok():
     token = get_tiktok_access_token()
